@@ -1,1 +1,1 @@
-# node_hangman
+Enjoy my node.js hangman game!
