@@ -1,22 +1,6 @@
 var inquirer = require('inquirer');
 var fs = require('fs');
 var Word = require('./word.js');
-// var letter = require('./letter.js');
-function Word(newWord) {
-    this.newWord = newWord;
-    this.letters = [];
-    this.length = this.letters.length;
-    this.guesses = 6;
-    this.numberRight = 0;
-    this.getLetters = function() {
-        var newWordLetters = this.newWord.split('');
-        for (var i = 0; i < newWordLetters.length; i++) {
-            this.letters.push(new letter(newWordLetters[i]));
-        }
-    };
-
-}
-
 var game = 
 {
 	"words" : ["Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Anguilla", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", 
@@ -37,7 +21,7 @@ var game =
 		var newWord = game.words[Math.floor(Math.random()*game.words.length)];
     	game.currentWord = new Word(newWord);
     	game.currentWord.getLetters(game.currentWord.newWord);
-    	console.log("Welcome to Geography hangman. Guess the country!");
+    	console.log("Welcome to Geography hangman. Guess the country!\n");
     	game.currentWord.getDisplayWord();
     	game.promptPlayer();
 
@@ -58,42 +42,42 @@ var game =
 	            if(!game.currentWord.lettersGuessed.includes(letter)) {
 	            	game.currentWord.lettersGuessed.push(letter);
 	            }
-	            console.log(game.currentWord.lettersGuessed);
-	            console.log("Incorrect. You have", game.currentWord.guessesLeft, "guesses left.");
+	            console.log("Letters already guessed:", game.currentWord.lettersGuessed.join(' '));
+	            console.log("Incorrect. You have", game.currentWord.guessesLeft, "guesses left.\n");
 	        }
 	        else if(numberFound === 1) {
-	            console.log("You guessed right! There was one", letter);
+	            console.log("You guessed right! There was one", letter, "\n");
 	            if(!game.currentWord.lettersGuessed.includes(letter)) {
 	            	game.currentWord.lettersGuessed.push(letter);
 	            }
-	            console.log(game.currentWord.lettersGuessed);
+	            console.log("Letters already guessed:", game.currentWord.lettersGuessed.join(' '));
 	        }
 	        else {
-	            console.log("You guessed right! There were", numberFound, letter,"'s");
+	            console.log("You guessed right! There were", numberFound, letter,"'s\n");
 	        }
 	        game.currentWord.getDisplayWord();
 	        game.numberRight += numberFound;
 	        game.checkWin();
 	    } 
 	    else if (game.currentWord.lettersGuessed.includes(letter)) {
-	    	console.log("You already guessed that letter. Try again.");
+	    	console.log("You already guessed that letter. Try again.\n");
 	    	game.promptPlayer();
 
 	    } 
 	    else {
-	    	console.log("Please inter a valid guess.");
+	    	console.log("Please inter a valid guess.\n");
 	    	game.promptPlayer();
 	    }
     },
     'checkWin': function() {
     	if(game.currentWord.numberRight === game.currentWord.letters.length) {
-			console.log("You win!");
+			console.log("You win!\n");
 			game.wins++  
-			console.log("You've won " + game.wins + " times.")   
+			console.log("You've won " + game.wins + " times.\n")   
 			game.restart();
 		} 
         else if (game.currentWord.guessesLeft === 0) {
-			console.log("You lose! The word was", game.currentWord.newWord);
+			console.log("You lose! The word was", game.currentWord.newWord, "\n");
 			game.restart();
 		} 
         else {
@@ -110,10 +94,10 @@ var game =
     		}
     		]).then(function(result) {
     		    if(game.validLetters.indexOf(result.guessedLetter !== -1)) {
-	    		console.log("You guessed: " + result.guessedLetter);
+	    				console.log("You guessed: " + result.guessedLetter);
 	    		var numberGuessed = game.checkLetter(result.guessedLetter);
-    		}
-    	})
+    			}
+    		})
     },
     'restart': function() {
     	inquirer.prompt(
