@@ -1,0 +1,26 @@
+{
+  "name": "node_hangman",
+  "version": "1.0.0",
+  "description": "Hangman game written for the command line using node.js",
+  "main": "node_hangman.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/www.github.com/taliesincochran.git"
+  },
+  "keywords": [
+    "hangman",
+    "node"
+  ],
+  "author": "Taliesin Cochran",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/www.github.com/taliesincochran/issues"
+  },
+  "homepage": "https://github.com/www.github.com/taliesincochran#readme",
+  "dependencies": {
+    "inquirer": "^3.3.0"
+  }
+}
