@@ -16,12 +16,8 @@ Word.prototype.getLetters = function() {
 Word.prototype.getDisplayWord = function() {
     var displayWord = '';
     for(var i = 0; i<this.letters.length; i++) {
-        if(this.letters[i].visible === true) {
-            displayWord += this.letters[i].character + " ";
-        }else {
-            displayWord += "_ ";
-        }
+        displayWord += this.letters[i].display();
     }
-    console.log('Word: ',displayWord, "\n");
+    console.log('Country: ',displayWord, "\n");
 };
 module.exports = Word;
