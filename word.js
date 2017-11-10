@@ -1,3 +1,4 @@
+//this module returns an object for the word with objects from letter.js for each letters.
 var letter = require('./letter.js');
 function Word(newWord) {
     this.newWord = newWord;
