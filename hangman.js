@@ -73,7 +73,11 @@ var game =
     	if(game.currentWord.numberRight === game.currentWord.letters.length) {
 			console.log("You win!\n");
 			game.wins++  
-			console.log("You've won " + game.wins + " times.\n")   
+			if(game.wins === 1) {
+				console.log("You've won 1 time.");
+			} else {
+			console.log("You've won " + game.wins + " times.\n");   
+			}
 			game.restart();
 		} 
         else if (game.currentWord.guessesLeft === 0) {
